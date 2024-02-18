@@ -1,7 +1,7 @@
 {
   "name": "spotify-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Not sure yet - playing around with OAuth and Spotify API",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
@@ -14,5 +14,13 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b-dyck/Spotify-App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/b-dyck/Spotify-App/issues"
+  },
+  "homepage": "https://github.com/b-dyck/Spotify-App#readme"
 }
