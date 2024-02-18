@@ -1,7 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const port = 8888;
+
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET
+const REDIRECT_URI = process.env.REDIRECT_URI;
 
 app.get('/', (req, res) => {
     const data = {
@@ -12,9 +17,8 @@ app.get('/', (req, res) => {
     res.json(data);
 });
 
-app.get("/awesome-generator", (req, res) => {
-    const {name, isAwesome} = req.query;
-    res.send(`${name} is ${JSON.parse(isAwesome) ? 'really' : 'not'} awesome`);
+app.get('/login', (req, res) => {
+    res.redirect(`https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}`);
 })
 
 app.listen(port, () => {
