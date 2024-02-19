@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable new-cap */
 /* eslint-disable no-template-curly-in-string */
 require('dotenv').config()
@@ -61,9 +62,23 @@ const generateRandomString = length => {
         Authorization: `Basic ${new Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')}`,
       },
     })
-      .then(response => {
+    .then(response => {
         if (response.status === 200) {
-          res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
+    
+          const { access_token, token_type } = response.data;
+    
+          axios.get('https://api.spotify.com/v1/me', {
+            headers: {
+              Authorization: `${token_type} ${access_token}`
+            }
+          })
+            .then(response => {
+              res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
+            })
+            .catch(error => {
+              res.send(error);
+            });
+    
         } else {
           res.send(response);
         }
@@ -71,7 +86,7 @@ const generateRandomString = length => {
       .catch(error => {
         res.send(error);
       });
-  });
+  })
 
 app.listen(port, () => {
     console.log(`Express app listening at http://localhost:${port}`)
