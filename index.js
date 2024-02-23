@@ -66,6 +66,7 @@ const generateRandomString = length => {
         if (response.status === 200) {
     
           const { access_token, refresh_token, expires_in } = response.data;
+          
           const queryParams = querystring.stringify({
             access_token,
             refresh_token,
