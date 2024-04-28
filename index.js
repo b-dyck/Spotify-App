@@ -9,7 +9,7 @@ const port = 8888;
 const querystring = require('querystring');
 
 const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
 /**
@@ -83,9 +83,9 @@ const generateRandomString = length => {
           })}`);
         }
       })
-      .catch(error => {
-        res.send(error);
-      });
+    .catch(error => {
+      res.send(error);
+    });
   })
 
   app.get('/refresh_token', (req, res) => {

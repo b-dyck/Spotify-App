@@ -40,7 +40,7 @@ const refreshToken = async () => {
       // Logout if there's no refresh token stored or we've managed to get into a reload infinite loop
       if (!LOCALSTORAGE_VALUES.refreshToken ||
         LOCALSTORAGE_VALUES.refreshToken === 'undefined' ||
-        (Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000) < 1000
+        (Date.now() - Number(LOCALSTORAGE_VALUES.timeStamp)) < 1000
       ) {
         console.error('No refresh token available');
         logout();
@@ -51,7 +51,7 @@ const refreshToken = async () => {
   
       // Update localStorage values
       window.localStorage.setItem(LOCALSTORAGE_KEYS.accessToken, data.access_token);
-      window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
+      window.localStorage.setItem(LOCALSTORAGE_KEYS.timeStamp, Date.now());
   
       // Reload the page for localStorage updates to be reflected
       window.location.reload();
@@ -67,11 +67,11 @@ const refreshToken = async () => {
  * @returns {boolean} Whether or not the access token in localStorage has expired
  */
 const hasTokenExpired = () => {
-    const { accessToken, timestamp, expireTime } = LOCALSTORAGE_VALUES;
-    if (!accessToken || !timestamp) {
+    const { accessToken, timeStamp, expireTime } = LOCALSTORAGE_VALUES;
+    if (!accessToken || !timeStamp) {
       return false;
     }
-    const millisecondsElapsed = Date.now() - Number(timestamp);
+    const millisecondsElapsed = Date.now() - Number(timeStamp);
     return (millisecondsElapsed / 1000) > Number(expireTime);
   };
 
@@ -108,7 +108,7 @@ const getAccessToken = () => {
         window.localStorage.setItem(property, queryParams[property]);
       }
       // Set timestamp
-      window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
+      window.localStorage.setItem(LOCALSTORAGE_KEYS.timeStamp, Date.now());
       // Return access token from query params
       return queryParams[LOCALSTORAGE_KEYS.accessToken];
     }
@@ -118,3 +118,18 @@ const getAccessToken = () => {
   };
 
 export const accessToken = getAccessToken();
+
+/**
+ * Axios global request headers
+ * https://github.com/axios/axios#global-axios-defaults
+ */
+axios.defaults.baseURL = 'https://api.spotify.com/v1';
+axios.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
+axios.defaults.headers['Content-Type'] = 'application/json';
+
+/**
+ * Get Current Users Profile
+ * https://developer.spotify.com/documentation/web-api/reference/get-current-users-profile
+ * @returns {Promise}
+ */
+export const getCurrentUserProfile = () => axios.get('/me');
