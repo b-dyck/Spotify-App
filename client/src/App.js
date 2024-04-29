@@ -1,31 +1,8 @@
 import { useState, useEffect } from 'react';
 import { accessToken, logout, getCurrentUserProfile } from './spotify';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
-
-const GlobalStyle = createGlobalStyle`
-:root {
-  --font: 'Circular Std', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-}
-html {
-    box-sizing: border-box;
-  }
-
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    color: white;
-    font-family: var()(--font);
-  }
-`;
-
+import styled from 'styled-components';
+import { GlobalStyle } from './syles';
 
 const StyledLoginButton = styled.a`
 background-color: green;
