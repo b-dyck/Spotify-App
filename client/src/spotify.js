@@ -142,3 +142,12 @@ export const getCurrentUserProfile = () => axios.get('/me');
 export const getCurrentUserPlaylists = (limit = 20) => {
   return axios.get(`/me/playlists?limit=${limit}`);
 };
+
+/**
+ * Get a List of Current User's Top Artists
+ * https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
+ * @returns {Promise}
+ */
+export const getCurrentUserTopArtists = (limit = 10, time_range = 'short_term') => {
+  return axios.get(`/me/top/artists?limit=${limit}&time_range=${time_range}`);
+}

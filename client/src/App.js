@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { accessToken, logout } from './spotify';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { GlobalStyle } from './syles';
+import { GlobalStyle } from './styles';
 import styled from 'styled-components';
 import { Login, Profile } from './pages';
 

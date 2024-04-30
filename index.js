@@ -33,7 +33,11 @@ const generateRandomString = length => {
     const state = generateRandomString(16);
     res.cookie(stateKey, state);
   
-    const scope = 'user-read-private user-read-email playlist-read-private';
+    const scope = [
+      'user-read-private user-read-email',
+      'playlist-read-private',
+      'user-top-read',
+    ].join(' ');
   
     const queryParams = querystring.stringify({
       client_id: CLIENT_ID,
