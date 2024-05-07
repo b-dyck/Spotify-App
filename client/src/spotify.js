@@ -151,3 +151,30 @@ export const getCurrentUserPlaylists = (limit = 20) => {
 export const getCurrentUserTopArtists = (limit = 10, time_range = 'short_term') => {
   return axios.get(`/me/top/artists?limit=${limit}&time_range=${time_range}`);
 }
+
+/**
+ * Get a List of Current User's Top Tracks
+ *  * https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
+ * @returns {Promise}
+ */
+export const getCurrentUserTopTracks = (limit = 10, time_range = 'short_term') => {
+  return axios.get(`/me/top/tracks?limit=${limit}&time_range=${time_range}`);
+}
+
+/**
+ * Get a list of related artists of given artist
+ * https://developer.spotify.com/documentation/web-api/reference/get-an-artists-related-artists
+ * @returns {Promise}
+ */
+export const getRelatedArtists = (id) => {
+  return axios.get(`/artists/${id}/related-artists`);
+}
+
+/**
+ * Get artist by ID
+ * https://developer.spotify.com/documentation/web-api/reference/get-an-artist
+ * @returns {Promise}
+ */
+export const getArtist = (id) => {
+  return axios.get(`/artists/${id}`);
+}

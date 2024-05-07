@@ -1,12 +1,12 @@
 import { StyledGrid } from '../styles';
 
-const ArtistsGrid = ({ artists }) => (
+const ArtistsGrid = ({ artists, onSelect }) => (
   <>
     {artists && artists.length ? (
       <StyledGrid type="artist">
         {artists.map((artist, i) => (
           <li className="grid__item" key={i}>
-            <div className="grid__item__inner">
+            <div className="grid__item__inner" onClick={()=> onSelect(artist.id)}>
               {artist.images[0] && (
                 <div className="grid__item__img">
                   <img src={artist.images[0].url} alt={artist.name} />
