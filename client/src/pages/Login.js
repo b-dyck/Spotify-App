@@ -24,7 +24,7 @@ padding: var(--spacing-sm) var(--spacing-xl);
 }
 `;
 
-const LOGIN_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:8888/login' : 'https://six-degrees-of-spotify-427298504df0.herokuapp.com/callback';
+const LOGIN_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:8888/login' : 'https://six-degrees-of-spotify-427298504df0.herokuapp.com/login';
 const Login = () => (
     <StyledLoginContainer>
         <StyledLoginButton href={LOGIN_URI}>
