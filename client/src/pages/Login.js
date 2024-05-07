@@ -24,9 +24,10 @@ padding: var(--spacing-sm) var(--spacing-xl);
 }
 `;
 
+const LOGIN_URI = process.env.NODE_ENV !== 'production' ? 'http://localhost:8888/login' : 'https://six-degrees-of-spotify-427298504df0.herokuapp.com/callback';
 const Login = () => (
     <StyledLoginContainer>
-        <StyledLoginButton href="http://localhost:8888/login">
+        <StyledLoginButton href={LOGIN_URI}>
             Log in to Spotify
         </StyledLoginButton>
     </StyledLoginContainer>
