@@ -4,8 +4,7 @@
 require('dotenv').config()
 const express = require('express');
 const app = express();
-const axios = require('axios')
-const port = 8888;
+const axios = require('axios');
 const querystring = require('querystring');
 const path = require('path');
 
