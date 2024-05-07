@@ -27,6 +27,7 @@
     "express": "^4.19.2"
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^2.1.4",
     "concurrently": "^8.2.2",
     "nodemon": "^3.1.0"
   },
